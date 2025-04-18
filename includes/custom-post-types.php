@@ -1,7 +1,5 @@
 <?php
-
-
-// Custom CSS code per page
+// Custom CSS and Javscript code per page
 
 // Add meta box in page/post editor
 function codespreader_add_custom_css_metabox() {
@@ -31,9 +29,6 @@ function codespreader_custom_css_callback($post) {
 
     wp_nonce_field('codespreader_save_custom_code', 'codespreader_custom_code_nonce');
 }
-
-
-
 
 function codespreader_save_custom_css($post_id) {
     if (!isset($_POST['codespreader_custom_code_nonce']) || !wp_verify_nonce($_POST['codespreader_custom_code_nonce'], 'codespreader_save_custom_code')) {
