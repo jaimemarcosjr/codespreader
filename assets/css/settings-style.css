@@ -1,0 +1,15 @@
+.wrap-codespreader .form-table th{
+    width: 100%;
+}
+.wrap-codespreader .form-table td{
+    padding: 0;
+}
+.wrap-codespreader table tr{
+    display: flex;
+    flex-direction: column;
+}
+
+.wrap-codespreader .form-table textarea{
+    width: 100%;
+    height: 300px;
+}
