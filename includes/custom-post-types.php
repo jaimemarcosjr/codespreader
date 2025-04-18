@@ -9,7 +9,7 @@ function codespreader_add_custom_css_metabox() {
     foreach ($screens as $screen) {
         add_meta_box(
             'codespreader_custom_css',
-            'Custom Page CSS',
+            'CodeSpreader - Custom CSS and Javascript',
             'codespreader_custom_css_callback',
             $screen,
             'normal',
