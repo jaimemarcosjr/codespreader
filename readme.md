@@ -1,6 +1,6 @@
 # CodeSpreader
 
-One plugin to rule them all â globally or individually add custom CSS and JS on WordPress pages.
+One plugin to rule them all — globally or individually add custom CSS and JS on WordPress pages.
 
 ## Description
 CodeSpreader allows you to quickly inject custom CSS and JavaScript across your entire WordPress site or on a per-page/post basis directly from the editor. Perfect for site-wide style tweaks, tracking scripts, or functionality enhancements tailored to individual pages.
