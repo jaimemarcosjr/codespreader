@@ -1,5 +1,4 @@
 <?php
-
 // Allowed HTML tags and attributes
 function codespreader_get_allowed_tags() {
     return array(
@@ -56,7 +55,7 @@ function codespreader_output_custom_css() {
 }
 add_action('wp_head', 'codespreader_output_custom_css');
 
-// Output the CUstom JS in footer
+// Output the custom JS in footer
 function codespreader_output_custom_js() {
     if (is_singular(['post', 'page'])) {
         global $post;
@@ -67,4 +66,3 @@ function codespreader_output_custom_js() {
     }
 }
 add_action('wp_footer', 'codespreader_output_custom_js', 100); // Load late
-

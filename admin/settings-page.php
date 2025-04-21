@@ -1,5 +1,4 @@
 <?php
-
 function codespreader_init_codemirror_on_settings() {
     ?>
     <script>
@@ -56,7 +55,6 @@ function codespreader_sanitize_custom_code($input) {
 
     return wp_kses($input, $allowed_tags);
 }
-
 
 function codespreader_register_settings_page() {
     add_options_page(
@@ -128,8 +126,6 @@ function codespreader_inject_footer_field_html() {
     echo '<textarea id="codespreader_inject_footer" name="codespreader_inject_footer" rows="10" style="width:100%;">' . esc_textarea($value) . '</textarea>';
 }
 
-
-
 function codespreader_settings_page_html() {
     ?>
     <div class="wrap-codespreader">
@@ -144,4 +140,3 @@ function codespreader_settings_page_html() {
     </div>
     <?php
 }
-

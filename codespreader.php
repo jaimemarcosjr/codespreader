@@ -22,10 +22,7 @@ require_once plugin_dir_path(__FILE__) . 'admin/settings-page.php';
 require_once plugin_dir_path(__FILE__) . 'includes/custom-post-types.php';
 require_once plugin_dir_path(__FILE__) . 'public/output-hooks.php';
 
-
-
 // Hooks
-
 
 // Hook into admin_enqueue_scripts
 add_action('admin_enqueue_scripts', 'codespreader_load_settings_css');
@@ -89,8 +86,17 @@ function codespreader_enqueue_codemirror_assets($hook) {
                 lineNumbers: true
             });
 
-            window.codespreaderEditor = wp.codeEditor.initialize('codespreader_custom_css_editor', cssSettings);
-            window.codespreaderJSEditor = wp.codeEditor.initialize('codespreader_custom_js_editor', jsSettings);
+            function initializeCodeSpreaderEditors() {
+                const cssEl = document.getElementById('codespreader_custom_css_editor');
+                const jsEl = document.getElementById('codespreader_custom_js_editor');
+
+                
+                window.codespreaderEditor = wp.codeEditor.initialize(cssEl, cssSettings);
+                window.codespreaderJSEditor = wp.codeEditor.initialize(jsEl, jsSettings);
+                
+            }
+
+            setTimeout(initializeCodeSpreaderEditors, 100);
 
             if (window.wp && wp.data && wp.data.subscribe) {
                 let wasSaving = false;
@@ -113,19 +119,8 @@ function codespreader_enqueue_codemirror_assets($hook) {
             }
         });
     ");
-
-
-
-
-
-   
-
-
 }
 add_action('admin_enqueue_scripts', 'codespreader_enqueue_codemirror_assets');
-
-
-
 
 function codespreader_enqueue_codemirror_for_html($hook) {
     // Load only on your plugin settings page
@@ -139,20 +134,11 @@ function codespreader_enqueue_codemirror_for_html($hook) {
         add_action('admin_footer', 'codespreader_init_codemirror_on_settings');
     }
 }
+
 add_action('admin_enqueue_scripts', 'codespreader_enqueue_codemirror_for_html');
-
-
-
 
 // Register settings page
 add_action('admin_menu', 'codespreader_register_settings_page');
 
 // Register settings
 add_action('admin_init', 'codespreader_register_settings');
-
-// Register custom post types
-
-
-//
-
-
