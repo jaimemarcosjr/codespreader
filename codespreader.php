@@ -7,7 +7,7 @@
  * Author URI:      https://github.com/jaimemarcosjr/
  * Text Domain:     codespreader
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         1.0.1
  *
  * @package         Codespreader
  */
@@ -38,8 +38,6 @@ function codespreader_load_settings_css($hook) {
         array(),
         '1.0'
     );
-
-
 }
 
 // Enqueue CodeMirror for Custom CSS textarea
@@ -135,6 +133,57 @@ function codespreader_enqueue_codemirror_for_html($hook) {
 }
 
 add_action('admin_enqueue_scripts', 'codespreader_enqueue_codemirror_for_html');
+
+function codespreader_enqueue_editor_styles() {
+    $editor_css_url  = plugin_dir_url(__FILE__) . 'assets/css/editor-style.css';
+    $editor_css_path = plugin_dir_path(__FILE__) . 'assets/css/editor-style.css';
+    $version         = file_exists($editor_css_path) ? filemtime($editor_css_path) : false;
+
+    // Gutenberg
+    add_action('enqueue_block_editor_assets', function () use ($editor_css_url, $version) {
+        wp_enqueue_style('codespreader-editor-style', $editor_css_url, array(), $version);
+    });
+
+    // Classic Editor (TinyMCE)
+    add_filter('mce_css', function ($mce_css) use ($editor_css_url) {
+        if (!empty($mce_css)) {
+            $mce_css .= ',' . $editor_css_url;
+        } else {
+            $mce_css = $editor_css_url;
+        }
+        return $mce_css;
+    });
+}
+add_action('init', 'codespreader_enqueue_editor_styles');
+
+function codespreader_enqueue_editor_scripts($hook) {
+    $editor_js_url  = plugin_dir_url(__FILE__) . 'assets/js/editor-script.js';
+    $editor_js_path = plugin_dir_path(__FILE__) . 'assets/js/editor-script.js';
+    $version        = file_exists($editor_js_path) ? filemtime($editor_js_path) : false;
+
+    // Gutenberg (Block Editor)
+    add_action('enqueue_block_editor_assets', function () use ($editor_js_url, $version) {
+        wp_enqueue_script(
+            'codespreader-editor-js',
+            $editor_js_url,
+            array('wp-blocks', 'wp-element', 'wp-editor'), // adjust based on usage
+            $version,
+            true
+        );
+    });
+
+    // Classic Editor
+    if ($hook === 'post.php' || $hook === 'post-new.php') {
+        wp_enqueue_script(
+            'codespreader-classic-js',
+            $editor_js_url,
+            array('jquery'), // adjust based on your JS
+            $version,
+            true
+        );
+    }
+}
+add_action('admin_enqueue_scripts', 'codespreader_enqueue_editor_scripts');
 
 // Register settings page
 add_action('admin_menu', 'codespreader_register_settings_page');
