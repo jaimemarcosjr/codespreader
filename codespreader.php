@@ -86,8 +86,17 @@ function codespreader_enqueue_codemirror_assets($hook) {
                 lineNumbers: true
             });
 
-            window.codespreaderEditor = wp.codeEditor.initialize('codespreader_custom_css_editor', cssSettings);
-            window.codespreaderJSEditor = wp.codeEditor.initialize('codespreader_custom_js_editor', jsSettings);
+            function initializeCodeSpreaderEditors() {
+                const cssEl = document.getElementById('codespreader_custom_css_editor');
+                const jsEl = document.getElementById('codespreader_custom_js_editor');
+
+                
+                window.codespreaderEditor = wp.codeEditor.initialize(cssEl, cssSettings);
+                window.codespreaderJSEditor = wp.codeEditor.initialize(jsEl, jsSettings);
+                
+            }
+
+            setTimeout(initializeCodeSpreaderEditors, 100);
 
             if (window.wp && wp.data && wp.data.subscribe) {
                 let wasSaving = false;

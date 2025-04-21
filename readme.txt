@@ -1,8 +1,9 @@
 === CodeSpreader ===
 Contributors: jaimemarcosjr
 Tags: custom css, custom javascript, global css, per page css, page-level js, editor scripts
-Requires at least: 5.0
-Tested up to: 6.5
+Requires at least: 6.7
+Tested up to: 6.8
+Requires PHP: 8.1
 Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -19,7 +20,6 @@ CodeSpreader allows you to inject custom CSS and JavaScript globally across your
 * Add custom CSS/JS per page or post from the editor
 * Simple and clean settings page
 * Lightweight and optimized
-* WordPress coding standards compliant
 
 == Installation ==
 

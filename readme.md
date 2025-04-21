@@ -11,7 +11,6 @@ CodeSpreader allows you to quickly inject custom CSS and JavaScript across your 
 - Add custom CSS and JS for individual pages or posts via the WordPress editor
 - Simple settings page for managing your global code
 - Clean and lightweight
-- Follows WordPress coding standards
 
 ## Installation
 
