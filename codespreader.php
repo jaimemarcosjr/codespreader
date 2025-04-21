@@ -17,7 +17,6 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 // Includes
-require_once plugin_dir_path(__FILE__) . 'includes/helper-functions.php';
 require_once plugin_dir_path(__FILE__) . 'admin/settings-page.php';
 require_once plugin_dir_path(__FILE__) . 'includes/custom-post-types.php';
 require_once plugin_dir_path(__FILE__) . 'public/output-hooks.php';
